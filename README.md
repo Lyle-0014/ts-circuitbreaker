@@ -1,10 +1,15 @@
 # Circuit breaker
 
-This deterministic state machine isolates transient network faults by transitioning strictly between closed, open, and half-open states, utilizing an injected clock to guarantee reproducible audit trails across the ledger.
+A minimal closed/open/half-open circuit breaker — clock injected, no deps.
 
-The TypeScript Circuitbreaker relies exclusively on the standard library, preventing unvetted dependencies from introducing non-deterministic behavior that could violate our exactly-once compliance boundaries.
+TypeScript Circuitbreaker uses only the typescript standard library; there is no service or dependency to install.
 
 ```
 circuit.ts
 ```
-Execute the test suite adjacent to the implementation to observe concrete state transitions and verify idempotency under simulated faults.
+Run the TypeScript Circuitbreaker test next to the implementation for concrete examples.
+
+## Questions people ask
+
+**Is there an SDK I should install first?**  
+No. `circuit.test.ts` reaches the call over plain HTTP, which is why the whole setup is `npx tsx` plus one environment variable. For a circuitbreaker example that is the entire dependency story.
